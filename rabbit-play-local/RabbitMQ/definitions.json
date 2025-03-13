@@ -1,0 +1,196 @@
+{
+  "rabbit_version": "3.11.9",
+  "rabbitmq_version": "3.11.9",
+  "product_name": "RabbitMQ",
+  "product_version": "3.11.9",
+  "users": [
+    {
+      "name": "mvm",
+      "password_hash": "KrTrFKNAtB1erchzuQz7dnedY5XKbwDYJ5sgZNy4GUpt2k/0",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    },
+    {
+      "name": "guest",
+      "password_hash": "RwQpBlNQGmMVp8cvRKdb7DGMuKHq7ZaZFnLgmSx4FWK8moz1",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "mvm"
+    },
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "mvm",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "mvm",
+      "vhost": "mvm",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "guest",
+      "vhost": "mvm",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [
+    {
+      "user": "mvm",
+      "vhost": "/",
+      "exchange": "",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "mvm",
+      "vhost": "mvm",
+      "exchange": "",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "internal_cluster_id",
+      "value": "rabbitmq-cluster-id-v9xJ0KzoYOcA_e1Y0hmLMQ"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "green",
+      "vhost": "mvm",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-max-length": 200,
+        "x-message-ttl": 30000,
+        "x-overflow": "drop-head",
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "amber",
+      "vhost": "mvm",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-max-length": 200,
+        "x-message-ttl": 30000,
+        "x-overflow": "drop-head",
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "red",
+      "vhost": "mvm",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-max-length": 200,
+        "x-message-ttl": 30000,
+        "x-overflow": "drop-head",
+        "x-queue-type": "classic"
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "mvm",
+      "vhost": "mvm",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "primary",
+      "vhost": "mvm",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "mvm",
+      "vhost": "mvm",
+      "destination": "amber",
+      "destination_type": "queue",
+      "routing_key": "*.*.amber",
+      "arguments": {}
+    },
+    {
+      "source": "mvm",
+      "vhost": "mvm",
+      "destination": "green",
+      "destination_type": "queue",
+      "routing_key": "*.*.green",
+      "arguments": {}
+    },
+    {
+      "source": "mvm",
+      "vhost": "mvm",
+      "destination": "red",
+      "destination_type": "queue",
+      "routing_key": "*.*.red",
+      "arguments": {}
+    },
+    {
+      "source": "primary",
+      "vhost": "mvm",
+      "destination": "mvm",
+      "destination_type": "exchange",
+      "routing_key": "*.*.amber",
+      "arguments": {}
+    },
+    {
+      "source": "primary",
+      "vhost": "mvm",
+      "destination": "mvm",
+      "destination_type": "exchange",
+      "routing_key": "*.*.green",
+      "arguments": {}
+    },
+    {
+      "source": "primary",
+      "vhost": "mvm",
+      "destination": "mvm",
+      "destination_type": "exchange",
+      "routing_key": "*.*.red",
+      "arguments": {}
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.springDependencyManagementPlugin) apply(true)
+    alias(libs.plugins.springBootPlugin) apply(true)
+}
+
+dependencies {
+    implementation libs.bundles.springBootWeb
+    implementation libs.springBootStarterAmqp
+    implementation libs.jsonPath
+
+    annotationProcessor libs.springBootConfigurationProcessor
+
+    testImplementation libs.springBootStarterTest
+    testImplementation libs.springBootRabbitTest
+}
+
+springBoot {
+    buildInfo()
+}

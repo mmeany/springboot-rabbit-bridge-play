@@ -1,0 +1,19 @@
+services:
+
+  rabbitmq:
+    image: rabbitmq:3.11.9-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15692:15692"
+    environment:
+      - RABBITMQ_PLUGINS_DIR=/opt/rabbitmq/plugins:/usr/lib/rabbitmq/plugins
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+      - ./RabbitMQ/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+      - ./RabbitMQ/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./RabbitMQ/enabled_plugins:/etc/rabbitmq/enabled_plugins:rw
+      - ./RabbitMQ/plugins:/usr/lib/rabbitmq/plugins:ro
+
+volumes:
+  rabbitmq:
