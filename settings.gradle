@@ -1,0 +1,4 @@
+rootProject.name = 'springboot-rabbit-bridge'
+include 'rabbit-bridge'
+
+project(':rabbit-bridge').name = 'rabbitBridge'
