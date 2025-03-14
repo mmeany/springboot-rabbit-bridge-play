@@ -49,7 +49,7 @@ public class RabbitListener {
     public void stopListening() {
         failIfCaptureComplete();
         log.info("Stop listening for messages on queue: {}", queueName);
-        dispose();
+        dispose(false);
         captureComplete.set(true);
     }
 
@@ -68,7 +68,7 @@ public class RabbitListener {
         return messages.get(index);
     }
 
-    public void dispose() {
+    public void dispose(boolean disposeStateAsWell) {
         try {
             if (consumerTag != null) {
                 log.info("Disposing consumer '{}' for queue '{}'", consumerTag, queueName);
@@ -89,6 +89,10 @@ public class RabbitListener {
         if (connection != null && connection.isOpen()) {
             log.info("Disposing connection for queue '{}'", queueName);
             connection.close();
+        }
+        if (disposeStateAsWell) {
+            messages.clear();
+            captureComplete.set(false);
         }
     }
 

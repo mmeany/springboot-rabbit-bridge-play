@@ -34,8 +34,9 @@ public class RabbitService {
 
     @PreDestroy
     public void reset() {
-        listeners.values().forEach(RabbitListener::dispose);
+        listeners.values().forEach(listener -> listener.dispose(true));
         listeners.clear();
+        counter.set(0);
     }
 
     public void sendMessage(SimpleMessage message) {
