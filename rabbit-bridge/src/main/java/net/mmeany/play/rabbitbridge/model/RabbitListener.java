@@ -48,9 +48,9 @@ public class RabbitListener {
 
     public void stopListening() {
         failIfCaptureComplete();
-        log.info("Stop listening for messages on queue: {}", queueName);
         dispose(false);
         captureComplete.set(true);
+        log.info("Stop listening for messages on queue '{}', captured {} messages", queueName, messages.size());
     }
 
     public int getMessageCount() {
@@ -91,6 +91,7 @@ public class RabbitListener {
             connection.close();
         }
         if (disposeStateAsWell) {
+            log.info("Disposing of cached messages and resetting finished flag");
             messages.clear();
             captureComplete.set(false);
         }

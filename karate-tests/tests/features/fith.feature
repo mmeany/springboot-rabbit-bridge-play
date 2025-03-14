@@ -11,9 +11,9 @@ Feature: Finally, use common steps to control the bridge
     * url rabbit_bridge.url
     * callonce read('../helpers/schemas.feature')
 
-  # Get the bridge to start listening using a common step from the bridge.feature file
+  # Get the bridge to start listening using a common step from feature file
   Scenario: Start listening
-    * call read('../helpers/bridge.feature@start-listening')
+    * call read('../helpers/bridge/bridge-start.feature')
 
   Scenario Outline: Post messages - messages come from a CSV file
     Given path 'send'
@@ -30,9 +30,9 @@ Feature: Finally, use common steps to control the bridge
     Examples:
       | read('../examples/sample-messages.csv') |
 
-  # Get the bridge to stop listening using a common step from the bridge.feature file
+  # Get the bridge to stop listening using a common step from feature file
   Scenario: Stop listening
-    * call read('../helpers/bridge.feature@stop-listening')
+    * call read('../helpers/bridge/bridge-stop.feature')
 
   Scenario Outline: Check results
     Given path 'message', "<queueName>", "<index>"
@@ -46,6 +46,6 @@ Feature: Finally, use common steps to control the bridge
     Examples:
       | read('../examples/sample-messages-from-queues.csv') |
 
-  # Reset the bridge using a common step from the bridge.feature file
+  # Reset the bridge using a common step from feature file
   Scenario: Reset the bridge
-    * call read('../helpers/bridge.feature@reset')
+    * call read('../helpers/bridge/bridge-reset.feature')

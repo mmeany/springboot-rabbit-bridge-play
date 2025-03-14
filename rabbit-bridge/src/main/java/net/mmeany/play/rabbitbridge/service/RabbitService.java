@@ -36,6 +36,7 @@ public class RabbitService {
     public void reset() {
         listeners.values().forEach(listener -> listener.dispose(true));
         listeners.clear();
+        log.info("Message counter reset to 0");
         counter.set(0);
     }
 
