@@ -1,4 +1,5 @@
 [versions]
+apacheCommonsNetVersion = "3.10.0"
 awaitilityVersion = "4.2.0"
 jsonPathVersion = "2.9.0"
 lombokVersion = "1.18.36"
@@ -15,6 +16,7 @@ springBootPlugin = { id = "org.springframework.boot", version.ref = "springBootV
 springDependencyManagementPlugin = { id = "io.spring.dependency-management", version.ref = "springDependencyManagementVersion" }
 
 [libraries]
+apacheCommonsNet = { module = "commons-net:commons-net", version.ref = "apacheCommonsNetVersion" }
 jackson = { module = "com.fasterxml.jackson.core:jackson-databind" }
 jacksonBlackbird = { module = "com.fasterxml.jackson.module:jackson-module-blackbird" }
 jsonPath = { module = "com.jayway.jsonpath:json-path", version.ref = "jsonPathVersion" }
@@ -29,10 +31,11 @@ springDocOpenApiUi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-
 springShellDependencies = { module = "org.springframework.shell:spring-shell-dependencies", version.ref = "springShellVersion" }
 springShellStarter = { module = "org.springframework.shell:spring-shell-starter", version.ref = "springShellVersion" }
 springShellStarterTest = { module = "org.springframework.shell:spring-shell-starter-test" }
+
+
 testcontainersJunit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainersVersion" }
 testcontainersRabbitMq = { module = "org.testcontainers:rabbitmq", version.ref = "testcontainersVersion" }
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitilityVersion" }
-
 hamcrest = { module = "org.hamcrest:hamcrest" }
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter" }
 junitJupiterPlatform = { module = "org.junit.platform:junit-platform-launcher" }

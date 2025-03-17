@@ -8,6 +8,7 @@ dependencies {
     implementation libs.bundles.springBootWeb
     implementation libs.springBootStarterAmqp
     implementation libs.jsonPath
+    implementation libs.apacheCommonsNet
 
     annotationProcessor libs.springBootConfigurationProcessor
 
