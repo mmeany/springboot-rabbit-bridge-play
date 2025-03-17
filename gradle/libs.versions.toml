@@ -1,5 +1,5 @@
 [versions]
-awaitilityVersion = "4.2.0"
+awaitilityVersion = "4.3.0"
 jsonPathVersion = "2.9.0"
 lombokVersion = "1.18.36"
 palantirDockerVersion = "0.36.0"
