@@ -1,4 +1,5 @@
 [versions]
+awaitilityVersion = "4.2.0"
 jsonPathVersion = "2.9.0"
 lombokVersion = "1.18.36"
 palantirDockerVersion = "0.36.0"
@@ -6,6 +7,7 @@ springBootVersion = "3.4.3"
 springDependencyManagementVersion = "1.1.7"
 springDocVersion = "2.8.3"
 springShellVersion = "3.4.0"
+testcontainersVersion = "1.19.6"
 
 [plugins]
 palantirDockerPlugin = { id = "com.palantir.docker", version.ref = "palantirDockerVersion" }
@@ -27,6 +29,9 @@ springDocOpenApiUi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-
 springShellDependencies = { module = "org.springframework.shell:spring-shell-dependencies", version.ref = "springShellVersion" }
 springShellStarter = { module = "org.springframework.shell:spring-shell-starter", version.ref = "springShellVersion" }
 springShellStarterTest = { module = "org.springframework.shell:spring-shell-starter-test" }
+testcontainersJunit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainersVersion" }
+testcontainersRabbitMq = { module = "org.testcontainers:rabbitmq", version.ref = "testcontainersVersion" }
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitilityVersion" }
 
 hamcrest = { module = "org.hamcrest:hamcrest" }
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter" }
@@ -40,3 +45,4 @@ springBootRabbitTest = { module = "org.springframework.amqp:spring-rabbit-test" 
 jackon = ["jackson", "jacksonBlackbird"]
 junitTest = ["junitJupiter", "hamcrest", "mockito", "mockitoJunitJupiter"]
 springBootWeb = ["springBootStarterWeb", "springBootStarterActuator", "springBootStarterValidation", "springDocOpenApiUi"]
+testcontainers = ["testcontainersJunit", "testcontainersRabbitMq", "awaitility"]

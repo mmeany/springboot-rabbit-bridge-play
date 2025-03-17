@@ -9,5 +9,4 @@ public class RabbitBridge {
     public static void main(String[] args) {
         SpringApplication.run(RabbitBridge.class, args);
     }
-
 }

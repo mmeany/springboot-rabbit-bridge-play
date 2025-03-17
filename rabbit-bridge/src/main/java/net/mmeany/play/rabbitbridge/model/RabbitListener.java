@@ -35,9 +35,8 @@ public class RabbitListener {
     public void startListening() {
         failIfCaptureComplete();
         log.info("Start listening for messages on queue: {}", queueName);
-        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+        DeliverCallback deliverCallback = (consumerTag, delivery) ->
             addEntry(new String(delivery.getBody(), StandardCharsets.UTF_8));
-        };
         try {
             consumerTag = channel.basicConsume(queueName, true, deliverCallback, System.out::println);
             log.info("Consumer tag: {}", consumerTag);
