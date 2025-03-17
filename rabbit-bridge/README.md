@@ -1,6 +1,7 @@
 ## Playing with Rabbit MQ
 
-An example of accessing Rabbit from a SpringBoot application.
+An example of accessing Rabbit from a SpringBoot application using a RestAPI. This is intended as a helper for Karate
+tests.
 
 A Rabbit environment is provided in the `rabbit-play-local` directory and instructions are provided in
 [README.md](../rabbit-play-local/README.md).
@@ -10,11 +11,12 @@ then be queried using the same REST API.
 
 The REST API is documented using Swagger and can be accessed at [OpenAPI Docs](http://localhost:8080/swagger-ui.html).
 
-To change the RabbitMQ environment, update the `application.yml` file in the `src/main/resources` directory.
+To change the RabbitMQ environment, update the [application.yml](src/main/resources/application.yml) file in the
+`src/main/resources` directory.
 
 ## Using the API
 
-There are two phases to using the API, capture and query.
+There are three phases to using the API; capture, query and dispose.
 
 ### Capture
 
@@ -26,7 +28,8 @@ There are two phases to using the API, capture and query.
       "queueNames": ["red", "amber", "green"]
     }
     ```
-* Post messages to the queues, send a few of them.
+* Post messages to the queues, send a few of them. Note that the `send` endpoint is a convenience method for testing
+  and is used as a substitute for an application that would be publishing to Rabbit queues.
     * `POST http://localhost:8080/send`, pass in the queue name and the message.
     ```json
     {
@@ -70,7 +73,7 @@ On Windows, execute this in a Git Bash shell.
 curl -s -X POST "http://localhost:8080/start-listening" -H "Content-Type: application/json" -d '{"queueNames":["red","amber","green"]}'
 
 # Send a message
-curl -s -X POST "http://localhost:8080/send" -H "Content-Type: application/json" -d '{"queueName":"red","message":"Hello, red!"}'
+curl -s -X POST "http://localhost:8080/send" -H "Content-Type: application/json" -d '{"queueName":"red","message":"{\"message\": \"Hello, red!\", \"timestamp\": \"2021-09-01T12:00:00\"}"}'
 curl -s -X POST "http://localhost:8080/send" -H "Content-Type: application/json" -d '{"queueName":"red","message":"Ready..."}'
 curl -s -X POST "http://localhost:8080/send" -H "Content-Type: application/json" -d '{"queueName":"red","message":"How are you"}'
 curl -s -X POST "http://localhost:8080/send" -H "Content-Type: application/json" -d '{"queueName":"amber","message":"Steady..."}'
