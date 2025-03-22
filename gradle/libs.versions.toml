@@ -5,7 +5,7 @@ lombokVersion = "1.18.36"
 palantirDockerVersion = "0.36.0"
 springBootVersion = "3.4.3"
 springDependencyManagementVersion = "1.1.7"
-springDocVersion = "2.8.3"
+springDocVersion = "2.8.5"
 springShellVersion = "3.4.0"
 testcontainersVersion = "1.20.6"
 
