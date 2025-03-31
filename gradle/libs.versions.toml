@@ -1,7 +1,7 @@
 [versions]
 awaitilityVersion = "4.3.0"
 jsonPathVersion = "2.9.0"
-lombokVersion = "1.18.36"
+lombokVersion = "1.18.38"
 palantirDockerVersion = "0.36.0"
 springBootVersion = "3.4.3"
 springDependencyManagementVersion = "1.1.7"
